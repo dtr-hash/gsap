@@ -1,39 +1,20 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const CircleSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const boxRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          gsap.fromTo(
-            boxRefs.current,
-            { scale: 0, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.8, ease: 'bounce.out', stagger: 0.15 }
-          );
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section className="flex-section full-vh" id="" ref={sectionRef}>
+    <motion.section className="flex-section full-vh" id="">
       {[0, 1, 2].map((i) => (
-        <div
+        <motion.div
           className="circle-box"
           key={i}
-          ref={el => { boxRefs.current[i] = el; }}
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.15 }}
         />
       ))}
-    </section>
+    </motion.section>
   );
 };
 

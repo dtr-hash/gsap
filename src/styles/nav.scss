@@ -1,0 +1,19 @@
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-items {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  height: 56px;
+} 

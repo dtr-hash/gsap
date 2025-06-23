@@ -1,35 +1,23 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const HeaderSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          gsap.fromTo(
-            headingRef.current,
-            { opacity: 0, y: 40 },
-            { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
-          );
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="header" className="full-vh" ref={sectionRef}>
-      <h1 ref={headingRef} className="centered-heading">
+    <motion.section
+      id="header"
+      className="full-vh"
+      initial={{}}
+    >
+      <motion.h1
+        className="centered-heading"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         Im here
-      </h1>
-    </section>
+      </motion.h1>
+    </motion.section>
   );
 };
 
