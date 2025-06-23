@@ -4,7 +4,7 @@ const Contact = () => (
   <>
     <Nav />
     <div className="centered-page">
-      <h1>Contact</h1>
+      <h1 className='centered-heading'>Contact</h1>
     </div>
   </>
 );

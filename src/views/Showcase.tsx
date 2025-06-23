@@ -4,7 +4,7 @@ const Showcase = () => (
   <>
     <Nav />
     <div className="centered-page">
-      <h1>Showcase</h1>
+      <h1 className='centered-heading'>Showcase</h1>
     </div>
   </>
 );
